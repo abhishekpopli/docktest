@@ -11,31 +11,40 @@ env:
 
 steps:
   - type: Command
-    name: "PreReq install"
+    name: "compose install"
     command: |
-      yum -y install curl
+      yum install docker-compose-plugin
   - type: Command
-    name: "Dockerize"
+    name: "compose version"
     command: |
-      docker build -t docktest .
+      docker compose version
   - type: Command
-    name: "Save"
+    name: "ls"
     command: |
-      docker save docktest -o docktest.tar
-      pwd
-      ls -lart
-  - type: Command
-    name: "SaveResult"
-    command: |
-      ls >> dockImagesResult.txt
+      ls
+  # - type: Command
+  #   name: "Dockerize"
+  #   command: |
+  #     docker build -t docktest .
+  # - type: Command
+  #   name: "Save"
+  #   command: |
+  #     docker save docktest -o docktest.tar
+  #     pwd
+  #     ls -lart
+  # - type: Command
+  #   name: "SaveResult"
+  #   command: |
+  #     ls >> dockImagesResult.txt
+  
 #   - type: Command
 #     name: "SaveResult"
 #     command: |
 #       export major_version=1.2
-outputArtifacts:
-  - name: docktest
-    type: BINARY
-    location: docktest.tar
-  - name: docktestdocker
-    type: DOCKER_IMAGE
-    location: docktest
+# outputArtifacts:
+#   - name: docktest
+#     type: BINARY
+#     location: docktest.tar
+#   - name: docktestdocker
+#     type: DOCKER_IMAGE
+#     location: docktest
