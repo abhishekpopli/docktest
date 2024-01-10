@@ -13,6 +13,9 @@ steps:
   - type: Command
     name: "compose install"
     command: |
+      yum install -y yum-utils
+      yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      yum update
       yum install docker-compose-plugin
   - type: Command
     name: "compose version"
